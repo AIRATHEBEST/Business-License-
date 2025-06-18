@@ -2,8 +2,13 @@
 
 public class FormsController : Controller
 {
-    public IActionResult View()
+    public IActionResult Index()
     {
         return View();
     }
+    public IActionResult Apply()
+    {
+        return View();
+    }
+
 }

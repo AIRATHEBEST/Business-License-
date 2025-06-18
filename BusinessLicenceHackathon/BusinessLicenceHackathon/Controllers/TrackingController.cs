@@ -8,5 +8,10 @@ namespace BusinessLicenceHackathon.Controllers
         {
             return View();
         }
+
+        public IActionResult Status()
+        {
+            return View();
+        }
     }
 }
