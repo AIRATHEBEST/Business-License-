@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Trading Bays in Cape Town</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.29/"></script>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  <script>
+    require(["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer"], function(Map, MapView, FeatureLayer) {
+
+      const map = new Map({
+        basemap: "streets-navigation-vector"
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [18.4241, -33.9249], // Cape Town
+        zoom: 13
+      });
+
+      // Replace this URL with your actual trading bays feature service
+      const tradingBaysLayer = new FeatureLayer({
+        url: "https://isap.capetown.gov.za/agsint/rest/services/Search_Layers/SL_ITPS_TRDG_BAY/MapServer/0",
+        popupTemplate: {
+          title: "Informal Trading Information",
+          content: `<div><b>Bay Name:</b> {BAY_NAME }</div>`
+        },
+        outFields: ["*"]
+      });
+
+      map.add(tradingBaysLayer);
+    });
+  </script>
+</body>
+</html>
