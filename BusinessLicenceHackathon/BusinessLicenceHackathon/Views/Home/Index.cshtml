@@ -7,8 +7,19 @@
     <p class="lead">How can we assist you today?</p>
 
     <div class="d-flex justify-content-center flex-wrap mt-4">
-        <a class="btn btn-warning m-2" href="/Forms/Apply">Apply</a>
-        <a class="btn btn-primary m-2" href="/Forms/View">View Application Forms</a>
+        <!-- View Application Forms Dropdown -->
+        <div class="dropdown m-2">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="viewFormsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                View Application Forms
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="viewFormsDropdown">
+                <li><a class="dropdown-item" href="/Forms/Apply">Apply</a></li>
+                <li><a class="dropdown-item" href="/Forms/ChangeInformation">Change Application Form Information</a></li>
+                <li><a class="dropdown-item" href="/Forms/ChangeRelocation">Change Relocation</a></li>
+            </ul>
+        </div>
+
+        <!-- Other buttons -->
         <a class="btn btn-secondary m-2" href="/Tracking/Status">Tracking Application Status</a>
         <a class="btn btn-success m-2" href="/Payment/Make">Make Payment</a>
     </div>
