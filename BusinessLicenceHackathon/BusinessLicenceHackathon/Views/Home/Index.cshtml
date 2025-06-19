@@ -1,6 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Business Licence Hackathon";
 }
+<!-- Bootstrap CSS (only needed once in your layout) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="text-center mt-5">
     <h1 class="display-6"><strong>Welcome to the Business Licence Portal</strong></h1>
@@ -15,22 +20,63 @@
     <div class="d-flex justify-content-center flex-wrap mt-4">
         <!-- View Application Forms Dropdown -->
         <div class="dropdown m-2">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="viewFormsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button style="max-width: 300px; font-size: 1.2rem; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none;"
+                class="btn btn-primary dropdown-toggle" type="button" id="viewFormsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 View Application Forms
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="viewFormsDropdown">
-                <li><a class="dropdown-item" href="/Forms/Apply">Apply</a></li>
-                <li><a class="dropdown-item" href="/Forms/ChangeApplicationDetails">Change Application Form Information</a></li>
-                <li><a class="dropdown-item" href="/Forms/ChangeRelocation">Change Relocation</a></li>
+            </button>           
+            <ul class="dropdown-menu"
+                aria-labelledby="viewFormsDropdown"
+                style="border: 1px solid #dee2e6; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 0.5rem; min-width: 300px;">
+               
+                <li>
+                    <a class="dropdown-item"
+                       href="/Forms/Apply"
+                       style="padding: 0.75rem 1rem; font-size: 1rem; border-radius: 5px; transition: background-color 0.2s;">
+                        📝 Apply
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item"
+                       href="/Forms/ChangeApplicationDetails"
+                       style="padding: 0.75rem 1rem; font-size: 1rem; border-radius: 5px; transition: background-color 0.2s;">
+                        ✏️ Change Application Form Information
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item"
+                       href="/Forms/ChangeRelocation"
+                       style="padding: 0.75rem 1rem; font-size: 1rem; border-radius: 5px; transition: background-color 0.2s;">
+                        🔁 Change Relocation
+                    </a>
+                </li>
+
             </ul>
+
         </div>
 
         <!-- Other buttons -->
-        <a class="btn btn-secondary m-2" href="/Tracking/Status">Tracking Application Status</a>
-        <a class="btn btn-success m-2" asp-controller="Home" asp-action="Payment">Pay Now</a>
+        @* <a class="btn btn-secondary m-2" href="/Tracking/Status">Tracking Application Status</a> *@
+        @* <a class="btn btn-success m-2" asp-controller="Home" asp-action="Payment">Pay Now</a> *@
 
 
-        
+        <!-- Tracking Button -->
+        <a href="/Tracking/Status"
+           class="btn btn-secondary btn-lg m-2 d-flex align-items-center justify-content-start"
+           style="max-width: 300px; font-size: 1.2rem; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none;">
+   
+            <span>Tracking Application Status</span>
+        </a>
+
+        <!-- Payment Button -->
+        <a href="/Home/Payment"
+           class="btn btn-success btn-lg m-2 d-flex align-items-center justify-content-start"
+           style="max-width: 300px; font-size: 1.2rem; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none;">
+       
+            <span>Pay Now</span>
+        </a>
+     
     </div>
 
 </div>
