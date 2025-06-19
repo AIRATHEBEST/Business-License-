@@ -83,6 +83,59 @@
 
 <div asp-area="" asp-controller="Home" asp-action="Index">
     <img class="example1" src="~/images/Home-Page-Image.jpg" />
+
+    <!-- Chatbot Box -->
+    <div id="chatbot-box" class="mt-2 w-80 max-w-sm bg-white rounded-2xl shadow-2xl border border-gray-300 p-4 hidden">
+        <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold text-gray-800">Milos</h4>
+
+        </div>
+        <div id="chat-window" class="h-60 overflow-y-auto text-sm space-y-2 border border-gray-200 p-2 rounded mb-2 bg-gray-50"></div>
+        <input id="chat-input" type="text" placeholder="Type your question..." class="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring focus:ring-blue-300" />
+        <button onclick="sendMessage()" class="w-full bg-blue-600 hover:bg-blue-700 text-white mt-2 py-1.5 rounded transition">Send</button>
+    </div>
 </div>
 
+<style>
+    #chatbot-box{
+        position: absolute;
+        bottom: 60px;
+        right: 0px;
+        max-width: 400px;
+        width: 100%;
+    
 
+
+</style>
+
+<script>
+    function toggleChatbot() {
+        const bot = document.getElementById('chatbot-box');
+        bot.classList.toggle('hidden');
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        if (!message) return;
+
+        input.value = "";
+        const chatWindow = document.getElementById('chat-window');
+        chatWindow.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+
+        const res = await fetch('/ChatBot/Ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: message })
+        });
+
+        const data = await res.json();
+        chatWindow.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+</script>
+
+  
+   
+
+ 
