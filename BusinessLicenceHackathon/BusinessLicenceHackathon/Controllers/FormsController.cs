@@ -11,4 +11,9 @@ public class FormsController : Controller
         return View();
     }
 
+    public IActionResult ChangeApplicationDetails()
+    {
+        return View();
+    }
+
 }
