@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Language\" />
-    <Folder Include="Views\Payment\" />
-    <Folder Include="Views\Tracking\" />
   </ItemGroup>
 
 </Project>

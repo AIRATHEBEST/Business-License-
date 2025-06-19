@@ -7,28 +7,100 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BusinessLicenceHackathon.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <style>
+            /* Business-style navbar background and styling */
+
+            .business-navbar {
+                background: linear-gradient(90deg, #0a3d62, #3c6382); /* Clean corporate blue gradient */
+                padding: 1rem;
+            }
+
+
+
+                .business-navbar .navbar-brand {
+                    color: #ffffff !important;
+                    font-size: 1.3rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+            .logo-img {
+                height: 40px;
+                width: auto;
+            }
+
+            .nav-link-lg {
+                font-size: 1.15rem;
+                font-weight: 500;
+                color: #ffffff !important;
+                transition: color 0.3s, border-bottom 0.3s;
+                padding: 0.5rem 1rem;
+            }
+
+                .nav-link-lg:hover,
+                .nav-link-lg:focus {
+                    color: #f1c40f !important;
+                    border-bottom: 2px solid #f1c40f;
+                }
+
+            .navbar-toggler {
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            body {
+                background-color: #f4f7f9;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+ 
+
+            .city-heading {
+                font-size: 1.8rem; /* Bigger size */
+                font-weight: bold;
+                color: #0a3d62;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }   
+
+
+        </style>
+
+        <nav class="navbar navbar-expand-sm navbar-dark business-navbar shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/coct-logo@2x.png" style="width:40%; height:40%;" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand mx-auto city-heading" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/coct-logo@2x.png" class="logo-img me-2" alt="COCT Logo" /> City of Cape Town </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link nav-link-lg" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link nav-link-lg" asp-area="" asp-controller="Home" asp-action="Privacy">POPIA</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-lg" href="https://www.capetown.gov.za/City-Connect/Apply/Licences-and-permits/Business-and-trade/Apply-for-a-business-licence" target="_blank" rel="noopener noreferrer">
+                                More Info
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-lg" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,10 +109,12 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            Copyright 2025 City of Cape Town. All rights reserved <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center">
+            Copyright 2025 City of Cape Town. All rights reserved
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

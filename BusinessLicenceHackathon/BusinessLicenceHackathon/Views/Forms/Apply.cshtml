@@ -55,7 +55,8 @@
                     <label>Ward or Suburb</label>
                     <input type="text" class="form-control" name="WardOrSuburb" placeholder="e.g., Khayelitsha" required />
                 </div>
-
+                <!-- 1. Add Leaflet CSS in your <head> -->
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
                 <!-- 3. Business Information -->
                 <h5 class="mb-3 mt-4">3. Business Information</h5>
                 <div class="mb-2">
@@ -68,17 +69,105 @@
                 </div>
                 <div class="mb-2">
                     <label>Preferred Trading Area</label>
-                    <select class="form-control" name="PreferredTradingArea" required>
+                    <select id="tradingAreaSelect" class="form-control" name="PreferredTradingArea" required>
                         <option value="">-- Select Area --</option>
                         <option>City Centre</option>
                         <option>Khayelitsha Market</option>
                         <option>Mitchells Plain Taxi Rank</option>
                         <option>Bellville CBD</option>
-                    </select>
+                    </select>         
                 </div>
-                <div>
-                    
-                </div>
+                                  
+                <!-- Leaflet CSS -->
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+                <!-- Leaflet JS -->
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+                <!-- Esri Leaflet JS -->
+                <script src="https://unpkg.com/esri-leaflet@3.0.12/dist/esri-leaflet.js"></script>
+                <!-- Map container -->
+                <div id="map" style="height: 400px; width: 100%; margin-top: 1rem;"></div>
+
+                <script>
+                    const areaCoordinates = {
+                      "City Centre": [-33.9249, 18.4241],
+                      "Khayelitsha Market": [-34.0383, 18.6708],
+                      "Mitchells Plain Taxi Rank": [-34.0495, 18.6205],
+                      "Bellville CBD": [-33.8998, 18.6298]
+                    };
+
+                    const map = L.map('map').setView([-33.9249, 18.4241], 12);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                      attribution: '© OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    let marker;
+
+                    document.getElementById('tradingAreaSelect').addEventListener('change', function () {
+                      const area = this.value;
+                      if (areaCoordinates[area]) {
+                        const [lat, lon] = areaCoordinates[area];
+                        map.setView([lat, lon], 15);
+                        if (marker) map.removeLayer(marker);
+                        marker = L.marker([lat, lon]).addTo(map)
+                          .bindPopup(`${area}`).openPopup();
+                      }
+                    });
+
+                    // Add the trading bays layer from ArcGIS Server
+                    const tradingBaysLayer = L.esri.featureLayer({
+                      url: "https://isapqa.capetown.gov.za/agsint/rest/services/Search_Layers/SL_ITPS_TRDG_BAY/MapServer/0",
+                      onEachFeature: function (feature, layer) {
+                        if (feature.properties && feature.properties.BAY_NAME) {
+                          layer.bindPopup("<b>Bay Name:</b> " + feature.properties.BAY_NAME);
+                        }
+                      }
+                    }).addTo(map);
+                </script>
+
+                @* <script> *@
+                @*     // Simple area-to-coordinates mapping *@
+                @*     const areaCoordinates = { *@
+                @*         "City Centre": [-33.9249, 18.4241], *@
+                @*         "Khayelitsha Market": [-34.0383, 18.6708], *@
+                @*         "Mitchells Plain Taxi Rank": [-34.0495, 18.6205], *@
+                @*         "Bellville CBD": [-33.8998, 18.6298] *@
+                @*     }; *@
+
+                @*     // Initialize the map *@
+                @*     const map = L.map('map').setView([-33.9249, 18.4241], 12); *@
+                @*     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { *@
+                @*         attribution: '© OpenStreetMap contributors' *@
+                @*     }).addTo(map); *@
+
+                @*                         // Add the ArcGIS FeatureLayer using Esri Leaflet *@
+                @*     const tradingBaysLayer = L.esri.featureLayer({ *@
+                @*       url: "https://isap.capetown.gov.za/agsint/rest/services/Search_Layers/SL_ITPS_TRDG_BAY/MapServer/0", *@
+                @*       onEachFeature: function (feature, layer) { *@
+                @*         if (feature.properties && feature.properties.BAY_NAME) { *@
+                @*           layer.bindPopup("<b>Bay Name:</b> " + feature.properties.BAY_NAME); *@
+                @*         } *@
+                @*       } *@
+                @*     }).addTo(map); *@
+
+
+                @*     let marker; *@
+
+                @*     document.getElementById('tradingAreaSelect').addEventListener('change', function () { *@
+                @*         const area = this.value; *@
+                @*         if (areaCoordinates[area]) { *@
+                @*             const [lat, lon] = areaCoordinates[area]; *@
+                @*             map.setView([lat, lon], 15); *@
+
+                @*             if (marker) map.removeLayer(marker); *@
+
+                @*             marker = L.marker([lat, lon]).addTo(map) *@
+                @*                      .bindPopup(`${area}`).openPopup(); *@
+                @*         } *@
+                @*     }); *@
+                @* </script> *@
+
                 <div class="mb-3">
                     <label>Trading Days and Hours</label>
                     <input type="text" class="form-control" name="TradingDaysHours" placeholder="e.g., Mon-Fri, 8am–5pm" required />
