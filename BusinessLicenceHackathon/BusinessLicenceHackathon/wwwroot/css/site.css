@@ -22,6 +22,28 @@ body {
     font-size: 14px;
     color: #495057;
     margin-bottom: 60px;
+    /*    background-image: url("paper.gif");*/
+    /*    background-image: url("../images/Home-Page-Image.jpg");
+    background-color: #c9d6dd;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+
+*/
+}
+
+.example1 {
+    /*    background: url("../images/Home-Page-Image.jpg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #c9d6dd;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+/*    opacity: 0.6;*/
+    border-radius: 8px;
+    margin-top:15px;
 }
 
 a {
